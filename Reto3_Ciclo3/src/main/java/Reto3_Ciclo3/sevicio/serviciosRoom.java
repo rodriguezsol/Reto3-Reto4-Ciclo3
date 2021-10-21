@@ -20,59 +20,59 @@ public class serviciosRoom {
          return metodosCrud.getAll();
     }
     
-    public Optional<Room> getRoom(int idRoom){
+    public Optional<Room> getRooms(int idRoom){
         return metodosCrud.getRoom(idRoom);
     }
     
     
-    public Room save(Room room){
-        if(room.getId()==null){
-            return metodosCrud.save(room);
+    public Room save(Room rooms){
+        if(rooms.getId()==null){
+            return metodosCrud.save(rooms);
         }else{
-            Optional<Room> evt=metodosCrud.getRoom(room.getId());
+            Optional<Room> evt=metodosCrud.getRoom(rooms.getId());
             if(evt.isEmpty()){
-            return metodosCrud.save(room);
+            return metodosCrud.save(rooms);
             }else{
-                return room;
+                return rooms;
             }
         
         
         }
     
     }
-   public Room update(Room room){
-        if(room.getId()!=null){
-            Optional<Room> evento=metodosCrud.getRoom(room.getId());
+   public Room update(Room rooms){
+        if(rooms.getId()!=null){
+            Optional<Room> evento=metodosCrud.getRoom(rooms.getId());
             if(!evento.isEmpty()){
-                if(room.getName()!=null){
-                    evento.get().setName(room.getName());
+                if(rooms.getName()!=null){
+                    evento.get().setName(rooms.getName());
                 }
-                if(room.getHotel()!=null){
-                    evento.get().setHotel(room.getHotel());
+                if(rooms.getHotel()!=null){
+                    evento.get().setHotel(rooms.getHotel());
                 }
-                if(room.getStars()!=null){
-                    evento.get().setStars(room.getStars());
+                if(rooms.getStars()!=null){
+                    evento.get().setStars(rooms.getStars());
                 }
-                if(room.getDescription()!=null){
-                    evento.get().setDescription(room.getDescription());
+                if(rooms.getDescription()!=null){
+                    evento.get().setDescription(rooms.getDescription());
                 }
-                if(room.getCategory()!=null){
-                    evento.get().setCategory(room.getCategory());
+                if(rooms.getCategory()!=null){
+                    evento.get().setCategory(rooms.getCategory());
                 }
                 metodosCrud.save(evento.get());
                 return evento.get();
             }else{
-                return room;
+                return rooms;
             }
         }else{
-            return room;
+            return rooms;
         }
     }
 
 
     public boolean deleteRoom(int idRoom) {
-        Boolean delect = getRoom(idRoom).map(room -> {
-            metodosCrud.delete(room);
+        Boolean delect = getRooms(idRoom).map(rooms -> {
+            metodosCrud.delete(rooms);
             return true;
         }).orElse(false);
         return delect;

@@ -1,4 +1,3 @@
-
 package Reto3_Ciclo3.modelo;
 
 import Reto3_Ciclo3.modelo.Categoria;
@@ -14,35 +13,75 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 /**
- * 
+ *
  * @author solecito
  */
 @Entity
-@Table(name = "room")
+/**
+ *
+ * @tabla a apuntar
+ */
+@Table(name = "rooms")
+/**
+ *
+ * Creamos la clase Room
+ */
 public class Room implements Serializable {
+
+    /**
+     *
+     * @Creando atributos
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    
+    /**
+     * @Creando atributo
+     */
     private Integer id;
+    /**
+     * @Creando atributo
+     */
     private String name;
+    /**
+     * @Creando atributo
+     */
     private String hotel;
+    /**
+     * @Creando atributo
+     */
     private Integer stars;
+    /**
+     * @Creando atributo
+     */
     private String description;
 
+    /**
+     * @Relacion muchos a uno categoria y room
+     */
     @ManyToOne
-    @JoinColumn(name ="idcategoria")
+    @JoinColumn(name = "idcategoria")
     @JsonIgnoreProperties("room")
     private Categoria category;
-    
-    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "room")
-    @JsonIgnoreProperties({"room","client"})
-    private List<Message>messages;
-    
-    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "room")
-    @JsonIgnoreProperties({"room","client"})
-    private List<Reservation>reservations;
 
+    /**
+     * @Relacion uno a muchos cliente y mensajes
+     */
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "room")
+    @JsonIgnoreProperties({"room", "client"})
+    private List<Message> messages;
+
+    /**
+     * @Relacion uno a muchos cliente y reservaciones
+     */
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "room")
+    @JsonIgnoreProperties({"room", "client"})
+    private List<Reservation> reservations;
+    
+    /**
+     * @getters y setters
+     */
     public Integer getId() {
         return id;
     }
@@ -107,33 +146,4 @@ public class Room implements Serializable {
         this.reservations = reservations;
     }
 
-  
-   
-
-    
-
-    
-    
-    
-   
-    
-
-   
-   
-
-    
-    
-    
-    
-   
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
 }
