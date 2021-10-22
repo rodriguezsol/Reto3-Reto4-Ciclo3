@@ -23,7 +23,7 @@ import javax.persistence.Table;
  *
  * @tabla a apuntar
  */
-@Table(name = "rooms")
+@Table(name = "room")
 /**
  *
  * Creamos la clase Room
@@ -62,7 +62,7 @@ public class Room implements Serializable {
      */
     @ManyToOne
     @JoinColumn(name = "idcategoria")
-    @JsonIgnoreProperties("room")
+    @JsonIgnoreProperties("rooms")
     private Categoria category;
 
     /**
@@ -78,7 +78,7 @@ public class Room implements Serializable {
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "room")
     @JsonIgnoreProperties({"room", "client"})
     private List<Reservation> reservations;
-    
+
     /**
      * @getters y setters
      */

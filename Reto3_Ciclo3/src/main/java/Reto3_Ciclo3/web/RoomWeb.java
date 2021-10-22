@@ -34,19 +34,19 @@ public class RoomWeb {
         return servicios.getAll();
     }
     @GetMapping("/{id}")
-    public Optional<Room> getRooms(@PathVariable("id") int idRoom) {
-        return servicios.getRooms(idRoom);
+    public Optional<Room> getRoom(@PathVariable("id") int idRoom) {
+        return servicios.getRoom(idRoom);
     }
 
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Room save(@RequestBody Room rooms) {
-        return servicios.save(rooms);
+    public Room save(@RequestBody Room room) {
+        return servicios.save(room);
     }
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public Room update(@RequestBody Room rooms) {
-        return servicios.update(rooms);
+    public Room update(@RequestBody Room room) {
+        return servicios.update(room);
     }
 
     @DeleteMapping("/{id}")
